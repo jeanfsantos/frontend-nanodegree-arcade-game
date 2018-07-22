@@ -2,6 +2,8 @@
 var Enemy = function() {
     // As variáveis aplicadas a nossas instâncias entram aqui.
     // Fornecemos uma a você para que possa começcar.
+    this.x = 0;
+    this.y = 0;
 
     // A imagem/sprite de nossos inimigos, isso usa um
     // ajudante que é fornecido para carregar imagens
@@ -23,14 +25,28 @@ Enemy.prototype.render = function() {
 };
 
 // Agora, escreva sua própria classe de jogador
-// Esta classe exige um método update(), 
+// Esta classe exige um método update(),
 // um render() e um handleInput().
+var Player = function() {
+    this.x = 0;
+    this.y = 0;
+    this.sprite = 'images/char-boy.png';
+};
 
+Player.prototype.update = function() {
+
+};
+
+// Desenhe o inimigo na tela, método exigido pelo jogo
+Player.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
 
 // Represente seus objetos como instâncias.
 // Coloque todos os objetos inimgos numa array allEnemies
 // Coloque o objeto do jogador numa variável chamada jogador.
-
+var allEnemies = [new Enemy(), new Enemy(), new Enemy()];
+var player = new Player();
 
 
 // Isto reconhece cliques em teclas e envia as chaves para seu
