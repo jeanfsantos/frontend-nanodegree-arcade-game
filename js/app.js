@@ -5,6 +5,8 @@ var Enemy = function() {
     this.x = this.initX();
     this.y = this.newPositionY();
     this.velocity = this.newVelocity();
+    this.width = 99;
+    this.height = 67;
 
     // A imagem/sprite de nossos inimigos, isso usa um
     // ajudante que é fornecido para carregar imagens
@@ -53,6 +55,8 @@ var Player = function() {
     this._minYAxis = -1;
     this._maxYAxis = 4;
     this.sprite = 'images/char-boy.png';
+    this.width = 67;
+    this.height = 76;
 };
 
 Player.prototype.update = function() {

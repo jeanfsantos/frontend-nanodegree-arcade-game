@@ -84,7 +84,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* É chamada pela função update, faz loops por todos os objetos dentro
@@ -99,6 +99,17 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+    }
+
+    function checkCollisions() {
+        var collision = allEnemies.some(function(enemy) {
+            // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+            return player.x < enemy.x + enemy.width &&
+                player.x + player.width > enemy.x &&
+                player.y < enemy.y + enemy.height &&
+                player.height + player.y > enemy.y;
+        });
+        if (collision) player.reset();
     }
 
     /* Esta função primeiro deseha o "nível do jogo" e, depois, chama a
