@@ -56,7 +56,9 @@ var Player = function() {
 };
 
 Player.prototype.update = function() {
-
+    if (this.undoCalcAxisY(this.y) === this._minYAxis) {
+        this.reset();
+    }
 };
 
 // Desenhe o inimigo na tela, método exigido pelo jogo
