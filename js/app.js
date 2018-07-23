@@ -47,8 +47,7 @@ Enemy.prototype.initX = function() {
 // Esta classe exige um método update(),
 // um render() e um handleInput().
 var Player = function() {
-    this.x = 0;
-    this.y = 0;
+    this.reset();
     this.sprite = 'images/char-boy.png';
 };
 
@@ -60,6 +59,20 @@ Player.prototype.update = function() {
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+Player.prototype.reset = function() {
+    this.x = this.calcAxisX(2);
+    this.y = this.calcAxisY(4);
+};
+
+Player.prototype.calcAxisX = function(val) {
+    return val * 101;
+};
+
+Player.prototype.calcAxisY = function(val) {
+    return val * 83 + 60;
+};
+
 
 // Represente seus objetos como instâncias.
 // Coloque todos os objetos inimgos numa array allEnemies
