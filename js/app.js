@@ -2,8 +2,8 @@
 var Enemy = function() {
     // As variáveis aplicadas a nossas instâncias entram aqui.
     // Fornecemos uma a você para que possa começcar.
-    this.x = 0;
-    this.y = 0;
+    this.x = -101;
+    this.y = this.newPositionY();
     this.velocity = this.newVelocity();
 
     // A imagem/sprite de nossos inimigos, isso usa um
@@ -26,8 +26,12 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Enemy.prototype.newVelocity = function () {
+Enemy.prototype.newVelocity = function() {
     return (Math.floor(Math.random() * 5) + 1) * 100;
+};
+
+Enemy.prototype.newPositionY = function() {
+    return (Math.floor(Math.random() * 3) * 83) + 60;
 };
 
 // Agora, escreva sua própria classe de jogador
