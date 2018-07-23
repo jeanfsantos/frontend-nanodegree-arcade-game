@@ -113,6 +113,10 @@ Player.prototype.undoCalcAxisY = function(val) {
     return ((val - 60) / 83);
 };
 
+Player.prototype.changeChar = function(char) {
+    this.sprite = char;
+};
+
 var Gem = function() {
     this.x = this.initX();
     this.y = this.newPositionY();
@@ -179,4 +183,8 @@ document.addEventListener('keyup', function(e) {
     };
 
     player.handleInput(allowedKeys[e.keyCode]);
+});
+
+document.getElementById('char').addEventListener('change', function(e) {
+    player.changeChar(e.target.value);
 });
