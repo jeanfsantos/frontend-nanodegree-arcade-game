@@ -48,6 +48,10 @@ Enemy.prototype.initX = function() {
 // um render() e um handleInput().
 var Player = function() {
     this.reset();
+    this._minXAxis = 0;
+    this._maxXAxis = 4;
+    this._minYAxis = -1;
+    this._maxYAxis = 4;
     this.sprite = 'images/char-boy.png';
 };
 
@@ -58,6 +62,28 @@ Player.prototype.update = function() {
 // Desenhe o inimigo na tela, método exigido pelo jogo
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Player.prototype.handleInput = function(move) {
+    var newValue = null;
+    switch (move) {
+        case 'left':
+            newValue = this.undoCalcAxisX(this.x) - 1;
+            if (newValue >= this._minXAxis) this.x = this.calcAxisX(newValue);
+            break;
+        case 'right':
+            newValue = this.undoCalcAxisX(this.x) + 1;
+            if (newValue <= this._maxXAxis) this.x = this.calcAxisX(newValue);
+            break;
+        case 'up':
+            newValue = this.undoCalcAxisY(this.y) - 1;
+            if (newValue >= this._minYAxis) this.y = this.calcAxisY(newValue);
+            break;
+        case 'down':
+            newValue = this.undoCalcAxisY(this.y) + 1;
+            if (newValue <= this._maxYAxis) this.y = this.calcAxisY(newValue);
+            break;
+    }
 };
 
 Player.prototype.reset = function() {
@@ -73,6 +99,13 @@ Player.prototype.calcAxisY = function(val) {
     return val * 83 + 60;
 };
 
+Player.prototype.undoCalcAxisX = function(val) {
+    return val / 101;
+};
+
+Player.prototype.undoCalcAxisY = function(val) {
+    return ((val - 60) / 83);
+};
 
 // Represente seus objetos como instâncias.
 // Coloque todos os objetos inimgos numa array allEnemies
