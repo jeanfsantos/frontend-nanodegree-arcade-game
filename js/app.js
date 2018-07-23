@@ -4,6 +4,7 @@ var Enemy = function() {
     // Fornecemos uma a você para que possa começcar.
     this.x = 0;
     this.y = 0;
+    this.velocity = this.newVelocity();
 
     // A imagem/sprite de nossos inimigos, isso usa um
     // ajudante que é fornecido para carregar imagens
@@ -17,11 +18,16 @@ Enemy.prototype.update = function(dt) {
     // Você deve multiplicar qualquer movimento pelo parâmetro
     // dt, o que garantirá que o jogo rode na mesma velocidade
     // em qualquer computador.
+    this.x = this.x + this.velocity * dt;
 };
 
 // Desenhe o inimigo na tela, método exigido pelo jogo
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Enemy.prototype.newVelocity = function () {
+    return (Math.floor(Math.random() * 5) + 1) * 100;
 };
 
 // Agora, escreva sua própria classe de jogador
