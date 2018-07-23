@@ -2,7 +2,7 @@
 var Enemy = function() {
     // As variáveis aplicadas a nossas instâncias entram aqui.
     // Fornecemos uma a você para que possa começcar.
-    this.x = -101;
+    this.x = this.initX();
     this.y = this.newPositionY();
     this.velocity = this.newVelocity();
 
@@ -19,6 +19,11 @@ Enemy.prototype.update = function(dt) {
     // dt, o que garantirá que o jogo rode na mesma velocidade
     // em qualquer computador.
     this.x = this.x + this.velocity * dt;
+    if (this.x > _canvas.width) {
+        this.x = this.initX();
+        this.y = this.newPositionY();
+        this.velocity = this.newVelocity();
+    }
 };
 
 // Desenhe o inimigo na tela, método exigido pelo jogo
@@ -32,6 +37,10 @@ Enemy.prototype.newVelocity = function() {
 
 Enemy.prototype.newPositionY = function() {
     return (Math.floor(Math.random() * 3) * 83) + 60;
+};
+
+Enemy.prototype.initX = function() {
+    return -101;
 };
 
 // Agora, escreva sua própria classe de jogador

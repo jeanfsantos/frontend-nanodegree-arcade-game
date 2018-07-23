@@ -40,7 +40,7 @@ var Engine = (function(global) {
          * instruções em velocidades diferentes, precisamos de um valor
          * de constante que seja o mesmo para todos (independentemente da
          * velocidade do computador).
-         * 
+         *
          */
         var now = Date.now(),
             dt = (now - lastTime) / 1000.0;
@@ -122,7 +122,7 @@ var Engine = (function(global) {
             numRows = 6,
             numCols = 5,
             row, col;
-        
+
         // Antes de fazer os desenhos, limpe os canvas existentes
         ctx.clearRect(0,0,canvas.width,canvas.height)
 
@@ -133,8 +133,8 @@ var Engine = (function(global) {
         for (row = 0; row < numRows; row++) {
             for (col = 0; col < numCols; col++) {
                 /* A função drawImage do elemento do contexto do canvas
-                 * exige 3 parâmetros: a imagem, a coordenada x e a 
-                 * coordenada y a serem desenhadas. Estamos usando nossa 
+                 * exige 3 parâmetros: a imagem, a coordenada x e a
+                 * coordenada y a serem desenhadas. Estamos usando nossa
                  * ajuda, dos recursos, para nos referirmos às imagens
                  * de forma a obtermos os benefícios de fazer seu cache,
                  * já que as usamos o tempo todo.
@@ -189,4 +189,5 @@ var Engine = (function(global) {
      * possam usá-lo com mais facilidade em seus arquivos app.js.
      */
     global.ctx = ctx;
+    global._canvas = canvas;
 })(this);
