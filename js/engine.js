@@ -99,17 +99,35 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+        gem.update(dt);
     }
 
     function checkCollisions() {
-        var collision = allEnemies.some(function(enemy) {
+        if (checkIfEnemyIsCollided()) {
+            player.reset();
+            gem.handleBonus(false);
+        }
+        if (checkIfGemIsCollided()) {
+            gem.handleBonus(true);
+            gem.reset();
+        }
+    }
+
+    function checkIfEnemyIsCollided() {
+        return allEnemies.some(function (enemy) {
             // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
             return player.x < enemy.x + enemy.width &&
                 player.x + player.width > enemy.x &&
                 player.y < enemy.y + enemy.height &&
                 player.height + player.y > enemy.y;
         });
-        if (collision) player.reset();
+    }
+
+    function checkIfGemIsCollided() {
+        return player.x < gem.x + gem.width &&
+            player.x + player.width > gem.x &&
+            player.y < gem.y + gem.height &&
+            player.height + player.y > gem.y;
     }
 
     /* Esta função primeiro deseha o "nível do jogo" e, depois, chama a
@@ -170,6 +188,7 @@ var Engine = (function(global) {
         });
 
         player.render();
+        gem.render();
     }
 
     /* Esta função não faz nada, mas pode ser um bom local para lidar com os
@@ -191,7 +210,10 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
-        'images/char-boy.png'
+        'images/char-boy.png',
+        'images/Gem Blue.png',
+        'images/Gem Green.png',
+        'images/Gem Orange.png'
     ]);
     Resources.onReady(init);
 

@@ -113,12 +113,60 @@ Player.prototype.undoCalcAxisY = function(val) {
     return ((val - 60) / 83);
 };
 
+var Gem = function() {
+    this.x = this.initX();
+    this.y = this.newPositionY();
+    this.width = 101;
+    this.height = 104;
+    this.images = ['images/Gem Blue.png', 'images/Gem Green.png', 'images/Gem Orange.png'];
+    this.sprite = this.gemImage();
+    this.bonus = 0;
+};
+
+Gem.prototype.update = function(dt) {
+    this.x = this.x + 200 * dt;
+    if (this.x > _canvas.width) {
+        this.reset();
+    }
+};
+
+Gem.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+Gem.prototype.newPositionY = function() {
+    return (Math.floor(Math.random() * 3) * 83) + 60;
+};
+
+Gem.prototype.initX = function() {
+    return -101;
+};
+
+Gem.prototype.reset = function() {
+    this.x = -101;
+    this.y = this.newPositionY();
+    this.sprite = this.gemImage();
+};
+
+Gem.prototype.gemImage = function() {
+    return this.images[Math.floor(Math.random() * this.images.length)];
+};
+
+Gem.prototype.handleBonus = function (val) {
+    if (val) {
+        this.bonus++;
+    } else {
+        this.bonus = 0;
+    }
+    document.getElementById('bonus').textContent = this.bonus;
+};
+
 // Represente seus objetos como instâncias.
 // Coloque todos os objetos inimgos numa array allEnemies
 // Coloque o objeto do jogador numa variável chamada jogador.
 var allEnemies = [new Enemy(), new Enemy(), new Enemy()];
 var player = new Player();
-
+var gem = new Gem();
 
 // Isto reconhece cliques em teclas e envia as chaves para seu
 // jogador. método handleInput(). Não é preciso mudar nada.
