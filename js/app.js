@@ -2,7 +2,7 @@
 var Enemy = function() {
     // As variáveis aplicadas a nossas instâncias entram aqui.
     // Fornecemos uma a você para que possa começcar.
-    this.x = this.initX();
+    this.x = this.initAxisX();
     this.y = this.newPositionY();
     this.velocity = this.newVelocity();
     this.width = 99;
@@ -21,8 +21,8 @@ Enemy.prototype.update = function(dt) {
     // dt, o que garantirá que o jogo rode na mesma velocidade
     // em qualquer computador.
     this.x = this.x + this.velocity * dt;
-    if (this.x > _canvas.width) {
-        this.x = this.initX();
+    if (this.x > ctx.canvas.width) {
+        this.x = this.initAxisX();
         this.y = this.newPositionY();
         this.velocity = this.newVelocity();
     }
@@ -33,15 +33,18 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// returna uma nova velocidade entre 100ms a 500ms
 Enemy.prototype.newVelocity = function() {
     return (Math.floor(Math.random() * 5) + 1) * 100;
 };
 
+// returna uma nova posicao vertical
 Enemy.prototype.newPositionY = function() {
     return (Math.floor(Math.random() * 3) * 83) + 60;
 };
 
-Enemy.prototype.initX = function() {
+// returna posicao inicial no eixo x
+Enemy.prototype.initAxisX = function() {
     return -101;
 };
 
@@ -59,6 +62,8 @@ var Player = function() {
     this.height = 76;
 };
 
+// valida se o jogador chegou ate a agua,
+// em caso de sucesso retorna para posicao inicial
 Player.prototype.update = function() {
     if (this.undoCalcAxisY(this.y) === this._minYAxis) {
         this.reset();
@@ -70,6 +75,8 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// manipula o input validando se a posicao
+// futura e permitido e se sim atualizando
 Player.prototype.handleInput = function(move) {
     var newValue = null;
     switch (move) {
@@ -92,70 +99,89 @@ Player.prototype.handleInput = function(move) {
     }
 };
 
+// reseta para a posicao inicial
 Player.prototype.reset = function() {
     this.x = this.calcAxisX(2);
     this.y = this.calcAxisY(4);
 };
 
+// calcula a posicao do jogador no eixo x
 Player.prototype.calcAxisX = function(val) {
     return val * 101;
 };
 
+// calcula a posicao do jogador no eixo y
 Player.prototype.calcAxisY = function(val) {
     return val * 83 + 60;
 };
 
+// metodo auxiliar para ajudar a calcular posicao no eixo x
 Player.prototype.undoCalcAxisX = function(val) {
     return val / 101;
 };
 
+// metodo auxiliar para ajudar a calcular posicao no eixo y
 Player.prototype.undoCalcAxisY = function(val) {
     return ((val - 60) / 83);
 };
 
+// altera o personagem
 Player.prototype.changeChar = function(char) {
     this.sprite = char;
 };
 
+// construtor da classe gema
 var Gem = function() {
-    this.x = this.initX();
+    this.x = this.initAxisX();
     this.y = this.newPositionY();
     this.width = 101;
     this.height = 104;
-    this.images = ['images/Gem Blue.png', 'images/Gem Green.png', 'images/Gem Orange.png'];
+    this.images = [
+        'images/Gem Blue.png',
+        'images/Gem Green.png',
+        'images/Gem Orange.png'
+    ];
     this.sprite = this.gemImage();
     this.bonus = 0;
 };
 
+// atualiza a posicao da gema e valida
+// se ela chegou no final para resetar
 Gem.prototype.update = function(dt) {
     this.x = this.x + 200 * dt;
-    if (this.x > _canvas.width) {
+    if (this.x > ctx.canvas.width) {
         this.reset();
     }
 };
 
+// renderiza a gema
 Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// returna nova posicao no eixo y
 Gem.prototype.newPositionY = function() {
     return (Math.floor(Math.random() * 3) * 83) + 60;
 };
 
-Gem.prototype.initX = function() {
+// retorna posicao initial no eixo x
+Gem.prototype.initAxisX = function() {
     return -101;
 };
 
+// reseta a gema para posicao inicial, e uma imagem aleatorio
 Gem.prototype.reset = function() {
     this.x = -101;
     this.y = this.newPositionY();
     this.sprite = this.gemImage();
 };
 
+// retorna imagem aleatorio da lista de gemas
 Gem.prototype.gemImage = function() {
     return this.images[Math.floor(Math.random() * this.images.length)];
 };
 
+// manipula bonus e atualiza o texto da pontuacao
 Gem.prototype.handleBonus = function (val) {
     if (val) {
         this.bonus++;
@@ -185,6 +211,7 @@ document.addEventListener('keyup', function(e) {
     player.handleInput(allowedKeys[e.keyCode]);
 });
 
+// ouve mudancas na alteracao do jogador e chama o metodo changeChar
 document.getElementById('char').addEventListener('change', function(e) {
     player.changeChar(e.target.value);
 });

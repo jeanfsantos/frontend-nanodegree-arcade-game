@@ -223,5 +223,4 @@ var Engine = (function(global) {
      * possam usá-lo com mais facilidade em seus arquivos app.js.
      */
     global.ctx = ctx;
-    global._canvas = canvas;
 })(this);
