@@ -221,3 +221,8 @@ document.addEventListener('keyup', function(e) {
 document.getElementById('char').addEventListener('change', function(e) {
     player.changeChar(e.target.value);
 });
+
+document.getElementById('restart').addEventListener('click', function() {
+    Engine.init();
+    this.style.display = 'none';
+});

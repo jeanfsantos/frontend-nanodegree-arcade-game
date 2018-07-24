@@ -25,7 +25,8 @@ var Engine = (function(global) {
         win = global.window,
         canvas = doc.createElement('canvas'),
         ctx = canvas.getContext('2d'),
-        lastTime;
+        lastTime,
+        gameover = false;
 
     canvas.width = 505;
     canvas.height = 606;
@@ -59,7 +60,18 @@ var Engine = (function(global) {
         /* Use a função requestAnimationFrame do navegador para chamar essa
          * função novamente quando o navegador puder desenhar outro frame.
          */
-        win.requestAnimationFrame(main);
+        if (!gameover) {
+            win.requestAnimationFrame(main);
+        } else {
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'white';
+            ctx.font = '30px Verdana';
+            ctx.textAlign = 'center';
+            ctx.fillText('Game Over', canvas.width / 2, canvas.height / 2);
+            ctx.fillText(`Bonus: ${gem.bonus}`, canvas.width / 2, canvas.height / 2 + 60)
+            document.getElementById('restart').style.display = 'block';
+        }
     }
 
     /* Esta função faz algumas configurações iniciais que só devem ocorrer
@@ -104,8 +116,7 @@ var Engine = (function(global) {
 
     function checkCollisions() {
         if (checkIfEnemyIsCollided()) {
-            player.reset();
-            gem.handleBonus(false);
+            gameover = true;
         }
         if (checkIfGemIsCollided()) {
             gem.handleBonus(true);
@@ -197,7 +208,9 @@ var Engine = (function(global) {
      * método init().
      */
     function reset() {
-        // noop
+        gameover = false;
+        player.reset();
+        gem.handleBonus(false);
     }
 
     /* Vá em frente e carregue todas as imagens que sabemos que serão
@@ -223,4 +236,8 @@ var Engine = (function(global) {
      * possam usá-lo com mais facilidade em seus arquivos app.js.
      */
     global.ctx = ctx;
+
+    return {
+        init: init
+    };
 })(this);

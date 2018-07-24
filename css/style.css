@@ -1,14 +1,17 @@
 body {
     margin: 0 auto;
-    display: flex;
     width: 940px;
-    justify-content: center;
 }
 
-#game {
-    text-align: center;
+.container {
+    display: flex;
+    justify-content: center;
 }
 
 .char__input {
     visibility: hidden;
+}
+
+.btn-restart {
+    display: none;
 }

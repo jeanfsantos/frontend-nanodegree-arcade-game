@@ -6,17 +6,20 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="game"></div>
-    <div id="char">
-        <label class="char__label">
-            <input type="radio" name="char" value="images/char-boy.png" checked class="char__input">
-            <img src="images/char-boy.png" alt="boy">
-        </label>
-        <label class="char__label">
-            <input type="radio" name="char" value="images/char-cat-girl.png" class="char__input">
-            <img src="images/char-cat-girl.png" alt="char-cat-girl">
-        </label>
+    <div class="container">
+        <div id="game"></div>
+        <div id="char">
+            <label class="char__label">
+                <input type="radio" name="char" value="images/char-boy.png" checked class="char__input">
+                <img src="images/char-boy.png" alt="boy">
+            </label>
+            <label class="char__label">
+                <input type="radio" name="char" value="images/char-cat-girl.png" class="char__input">
+                <img src="images/char-cat-girl.png" alt="char-cat-girl">
+            </label>
+        </div>
     </div>
+    <button id="restart" class="btn-restart">Restart</button>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>
