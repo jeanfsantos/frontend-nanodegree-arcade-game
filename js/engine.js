@@ -29,7 +29,7 @@ var Engine = (function(global) {
 
     canvas.width = 505;
     canvas.height = 606;
-    doc.body.appendChild(canvas);
+    doc.getElementById('game').appendChild(canvas);
 
     /* Esta função age como o ponto de largada do loop do jogo em si e
      * lida com as chamadas dos métodos render e update de forma adequada.

@@ -157,6 +157,13 @@ Gem.prototype.update = function(dt) {
 // renderiza a gema
 Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    ctx.font = '14px Verdana';
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = 'white';
+    ctx.strokeText(`Bonus: ${this.bonus}`, 490, 80);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = 'black';
+    ctx.fillText(`Bonus: ${this.bonus}`, 490, 80);
 };
 
 // returna nova posicao no eixo y
@@ -182,13 +189,12 @@ Gem.prototype.gemImage = function() {
 };
 
 // manipula bonus e atualiza o texto da pontuacao
-Gem.prototype.handleBonus = function (val) {
+Gem.prototype.handleBonus = function(val) {
     if (val) {
         this.bonus++;
     } else {
         this.bonus = 0;
     }
-    document.getElementById('bonus').textContent = this.bonus;
 };
 
 // Represente seus objetos como instâncias.
