@@ -134,8 +134,8 @@ Player.prototype.changeChar = function(char) {
 var Gem = function() {
     this.x = this.initAxisX();
     this.y = this.newPositionY();
-    this.width = 101;
-    this.height = 104;
+    this.width = 55;
+    this.height = 55;
     this.images = [
         'images/Gem Blue.png',
         'images/Gem Green.png',
@@ -168,7 +168,7 @@ Gem.prototype.render = function() {
 
 // returna nova posicao no eixo y
 Gem.prototype.newPositionY = function() {
-    return (Math.floor(Math.random() * 3) * 83) + 60;
+    return (Math.floor(Math.random() * 3) * 83) + 85;
 };
 
 // retorna posicao initial no eixo x
