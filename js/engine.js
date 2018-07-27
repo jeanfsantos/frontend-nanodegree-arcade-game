@@ -59,6 +59,8 @@ var Engine = (function(global) {
 
         /* Use a função requestAnimationFrame do navegador para chamar essa
          * função novamente quando o navegador puder desenhar outro frame.
+         * caso o jogo finalize desenha uma tela preta com a frase game over
+         * mostrando a quantidade de gemas juntadas.
          */
         if (!gameover) {
             win.requestAnimationFrame(main);
@@ -69,7 +71,7 @@ var Engine = (function(global) {
             ctx.font = '30px Gaegu';
             ctx.textAlign = 'center';
             ctx.fillText('Game Over', canvas.width / 2, canvas.height / 2);
-            ctx.fillText(`Bonus: ${gem.bonus}`, canvas.width / 2, canvas.height / 2 + 60)
+            ctx.fillText(`Gemas: ${gem.bonus}`, canvas.width / 2, canvas.height / 2 + 60)
             document.getElementById('restart').style.visibility = 'visible';
         }
     }
@@ -114,6 +116,7 @@ var Engine = (function(global) {
         gem.update(dt);
     }
 
+    // funcao que faz as tratativas das colisao do inimigo e gema
     function checkCollisions() {
         if (checkIfEnemyIsCollided()) {
             gameover = true;
@@ -124,6 +127,7 @@ var Engine = (function(global) {
         }
     }
 
+    //  funcao que verifica colisao com inimigo
     function checkIfEnemyIsCollided() {
         return allEnemies.some(function (enemy) {
             // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
@@ -134,6 +138,7 @@ var Engine = (function(global) {
         });
     }
 
+    // funcao que verifica colisao com gema
     function checkIfGemIsCollided() {
         return player.x < gem.x + gem.width &&
             player.x + player.width > gem.x &&
@@ -237,6 +242,7 @@ var Engine = (function(global) {
      */
     global.ctx = ctx;
 
+    // exporta a funcao init para usar fora da iife
     return {
         init: init
     };

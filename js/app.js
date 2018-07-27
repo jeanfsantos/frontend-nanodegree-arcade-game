@@ -222,6 +222,7 @@ document.getElementById('char').addEventListener('change', function(e) {
     player.changeChar(e.target.value);
 });
 
+// ouve o click no botao restart e inicia o jogo e esconde o botao
 document.getElementById('restart').addEventListener('click', function() {
     Engine.init();
     this.style.visibility = 'hidden';

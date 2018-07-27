@@ -1,6 +1,25 @@
-frontend-nanodegree-arcade-game
-===============================
+# Classic Arcade Game Clone
 
-Os alunos devem usar esta [rubrica](https://review.udacity.com/#!/rubrics/436/view) para fazer uma autoavaliação de seu projeto. Certifique-se de que as funções que escreveu sejam **orientadas a objetos** - tanto funções de classe (como Player e Enemy) como funções de protótipo de classe, como Enemy.prototype.checkCollisions, e que a palavra-chave 'this' seja usada de maneira correta em suas funções de classe e de protótipo de classe para se referir ao objeto que faz a chamada da função. Certifique-se, também, de que o arquivo **readme.md** esteja atualizado com suas instruções, tanto sobre rodar quanto sobre como jogar o fliperama clássico.
+![Classic Arcade Game Clone](https://jeanfsantos.github.io/frontend-nanodegree-arcade-game/images/classic-arcade-game-clone.jpg)
 
-Para ver instruções detalhadas sobre como começar, confira este [guia](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+## Como executar
+
+Para executar o jogo você tem duas opções fazer download ou clicar [aqui](https://jeanfsantos.github.io/frontend-nanodegree-arcade-game).
+
+### Download
+
+Para executar o projeto basta fazer download ou clonar o projeto usando o git.
+
+```ssh
+$ git clone https://github.com/jeanfsantos/frontend-nanodegree-arcade-game.git
+```
+
+Depois basta acessar o arquivo `index.html` que esta na pasta que você clonou ou fez download pelo navegador e começar a jogar.
+
+## Instrução do jogo
+
+Para movimentar o jogador você vai utilizar as setas do teclado.
+
+## Desafio
+
+Tente juntar o máximo possível de gemas. Boa sorte!
