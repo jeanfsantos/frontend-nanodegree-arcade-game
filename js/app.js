@@ -157,13 +157,13 @@ Gem.prototype.update = function(dt) {
 // renderiza a gema
 Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    ctx.font = '14px Verdana';
+    ctx.font = '18px Gaegu';
     ctx.lineWidth = 2;
     ctx.strokeStyle = 'white';
-    ctx.strokeText(`Bonus: ${this.bonus}`, 490, 80);
+    ctx.strokeText(`Gemas: ${this.bonus}`, 490, 80);
     ctx.textAlign = 'right';
     ctx.fillStyle = 'black';
-    ctx.fillText(`Bonus: ${this.bonus}`, 490, 80);
+    ctx.fillText(`Gemas: ${this.bonus}`, 490, 80);
 };
 
 // returna nova posicao no eixo y
@@ -224,5 +224,5 @@ document.getElementById('char').addEventListener('change', function(e) {
 
 document.getElementById('restart').addEventListener('click', function() {
     Engine.init();
-    this.style.display = 'none';
+    this.style.visibility = 'hidden';
 });

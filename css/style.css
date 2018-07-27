@@ -1,11 +1,36 @@
+html * {
+    font-family: 'Gaegu', cursive;
+}
+
 body {
     margin: 0 auto;
     width: 940px;
+    min-height: 100vh;
+    background: #11998e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .container {
     display: flex;
+    justify-content: space-between;
+}
+
+#char {
+    display: flex;
+}
+
+.char-wrap {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.legend {
+    color: white;
+    font-size: 30px;
 }
 
 .char__input {
@@ -13,5 +38,18 @@ body {
 }
 
 .btn-restart {
-    display: none;
+    visibility: hidden;
+}
+
+.char__img {
+    display: block;
+}
+
+.btn-restart {
+    border: 0;
+    background: white;
+    color: black;
+    font-size: 20px;
+    height: 40px;
+    width: 120px;
 }

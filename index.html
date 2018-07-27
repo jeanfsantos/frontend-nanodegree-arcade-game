@@ -3,23 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Effective JavaScript: Frogger</title>
+    <link href="https://fonts.googleapis.com/css?family=Gaegu" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
         <div id="game"></div>
-        <div id="char">
-            <label class="char__label">
-                <input type="radio" name="char" value="images/char-boy.png" checked class="char__input">
-                <img src="images/char-boy.png" alt="boy">
-            </label>
-            <label class="char__label">
-                <input type="radio" name="char" value="images/char-cat-girl.png" class="char__input">
-                <img src="images/char-cat-girl.png" alt="char-cat-girl">
-            </label>
+        <div class="char-wrap">
+            <div class="legend">Utilize as setas do teclado para movimentar o jogador, tente selecionar o máximo possível de gemas, boa sorte!</div>
+            <br>
+            <div class="legend">Selecione um jogador</div>
+            <div id="char">
+                <label class="char__label">
+                    <input type="radio" name="char" value="images/char-boy.png" checked class="char__input">
+                    <img src="images/char-boy.png" alt="boy" class="char__img">
+                </label>
+                <label class="char__label">
+                    <input type="radio" name="char" value="images/char-cat-girl.png" class="char__input">
+                    <img src="images/char-cat-girl.png" alt="char-cat-girl" class="char__img">
+                </label>
+            </div>
+            <button id="restart" class="btn-restart">Restart</button>
         </div>
     </div>
-    <button id="restart" class="btn-restart">Restart</button>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>

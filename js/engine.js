@@ -66,11 +66,11 @@ var Engine = (function(global) {
             ctx.fillStyle = 'black';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = 'white';
-            ctx.font = '30px Verdana';
+            ctx.font = '30px Gaegu';
             ctx.textAlign = 'center';
             ctx.fillText('Game Over', canvas.width / 2, canvas.height / 2);
             ctx.fillText(`Bonus: ${gem.bonus}`, canvas.width / 2, canvas.height / 2 + 60)
-            document.getElementById('restart').style.display = 'block';
+            document.getElementById('restart').style.visibility = 'visible';
         }
     }
 
