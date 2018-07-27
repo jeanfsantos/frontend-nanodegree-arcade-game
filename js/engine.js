@@ -184,7 +184,11 @@ var Engine = (function(global) {
                  * de forma a obtermos os benefícios de fazer seu cache,
                  * já que as usamos o tempo todo.
                  */
-                ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
+                if (col === 2 && row === 0) {
+                    ctx.drawImage(Resources.get('images/stone-block.png'), col * 101, row * 83);
+                } else {
+                    ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
+                }
             }
         }
 
@@ -232,7 +236,8 @@ var Engine = (function(global) {
         'images/char-cat-girl.png',
         'images/Gem Blue.png',
         'images/Gem Green.png',
-        'images/Gem Orange.png'
+        'images/Gem Orange.png',
+        'images/Selector.png'
     ]);
     Resources.onReady(init);
 
